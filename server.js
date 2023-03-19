@@ -1,10 +1,14 @@
 const express = require('express');
-const app = express();
+const compression = require('compression');
 const http = require('http');
 const path = require('path');
+
+
 const port = process.env.PORT || 8080;
 // Use the whole root as static files to be able to serve the html file and
 // the build folder
+const app = express();
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 // Send html on '/'path
 app.get('/', (req, res) => {
